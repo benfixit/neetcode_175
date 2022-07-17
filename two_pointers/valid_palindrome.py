@@ -1,8 +1,5 @@
 # Q:125 - https://leetcode.com/problems/valid-palindrome/
 
-from operator import le
-
-
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         # convert s to all lowercase

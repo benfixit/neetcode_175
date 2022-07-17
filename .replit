@@ -1,0 +1,6 @@
+run = ["python3"]
+
+language = "python3"
+
+entrypoint = "./main.py"
+
