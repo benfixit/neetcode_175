@@ -1,11 +1,15 @@
+# Q:217 - https://leetcode.com/problems/contains-duplicate/
+
 from typing import List
 from collections import Counter
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
+        # Create a map of the numbers and their frequency of occurence
         map = Counter(nums)
 
         for freq in map.values():
+            # if any of the number appears once, we are done
             if freq > 1:
                 return True
 

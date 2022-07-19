@@ -1,4 +1,4 @@
-from collections import Counter
+# Q:242 - https://leetcode.com/problems/valid-anagram/
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
@@ -14,14 +14,13 @@ class Solution:
         
         return True
     
+    # creates a map of the string character against their frequency of occurence
     def __createMap(self, s: str) -> dict:
         map = dict()
 
         for ch in s:
-            if ch not in map:
-                map[ch] = 0
-            
-            map[ch] += 1
+            map[ch] = map.get(ch, 0) + 1
+
         return map
 
 
