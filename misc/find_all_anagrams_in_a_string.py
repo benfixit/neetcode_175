@@ -16,11 +16,13 @@ class Solution:
         while right < len(s):
             currentWindow = right - left + 1
             
-
+            # If the window matches the word length, let's go!
             if currentWindow == len(p):
                 newWindowStr = s[left:right + 1]
+                # if we are just starting, create the map
                 if left == 0:
                     newWindowStrMap = self.__createMap(newWindowStr)
+                # else update the map by removing the left char and adding the right char
                 else:
                     newWindowStrMap = self.__updateMap(newWindowStrMap, s[left - 1], s[right])
 
