@@ -8,12 +8,13 @@ def headRecursion(num):
 
 def tailRecursion(num):
     if num == -1:
-        return
+        return "test"
 
     print(num)
-    tailRecursion(num - 1)
+    return str(1) + tailRecursion(num - 1)
 
 
-headRecursion(4)
-print("=========")
-tailRecursion(4)
+# headRecursion(4)
+# print("=========")
+data = tailRecursion(4)
+print(data)
