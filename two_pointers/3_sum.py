@@ -15,6 +15,8 @@ class Solution:
 
             left, right = i + 1, len(sortedNums) - 1
 
+            print(sortedNums)
+
             while left < right:
                 sum = current + sortedNums[left] + sortedNums[right]
 
@@ -49,7 +51,9 @@ nums2 = [0,1,1]
 nums3 = [0,0,0]
 nums4 = [-2,0,0,2,2]
 
-print(c.threeSum(nums1))
-print(c.threeSum(nums2))
-print(c.threeSum(nums3))
-print(c.threeSum(nums4))
+# print(c.threeSum(nums1))
+# print(c.threeSum(nums2))
+# print(c.threeSum(nums3))
+# print(c.threeSum(nums4))
+
+print(c.threeSum([-1,0,1,2,-1,-4,-2,-3,3,0,4]))
