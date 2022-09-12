@@ -5,6 +5,8 @@ from index import TreeNode
 
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        diameter = 0
+
         def dfs(node: Optional[TreeNode]): 
             nonlocal diameter
             if node is None: 
@@ -13,14 +15,13 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             
-            print("calculating diameter", left, right, max(left + right, diameter), node.val)
+            # print("calculating diameter", left, right, max(left + right, diameter), node.val)
             diameter = max(left + right, diameter)
             
-            print("returning diameter", left, right, max(left, right) + 1, node.val)
+            # print("returning diameter", left, right, max(left, right) + 1, node.val)
             return max(left, right) + 1
             
                     
-        diameter = 0
         dfs(root)
         return diameter
 
