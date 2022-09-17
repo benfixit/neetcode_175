@@ -20,7 +20,7 @@ var subsets = function (nums) {
     dfs(index + 1, numsList);
   };
 
-  dfs(0, []);
+  dfs(0, []); 
 
   return result;
 };

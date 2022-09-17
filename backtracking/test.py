@@ -1,26 +1,30 @@
 from typing import List
 
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
+        candidates.sort()
 
-        #base case
-        if len(nums) == 1:
-            return [nums.copy()]
+        def backtrack(cur, pos, target):
+            if target == 0:
+                result.append(cur.copy())
+            if target <= 0:
+                return
+            
+            prev = - 1
+            for i in range(pos, len(candidates)):
+                if candidates[i] == prev:
+                    continue
+                cur.append(candidates[i])
+                backtrack(cur, i + 1, target - candidates[i])
+                cur.pop()
+                prev = candidates[i]
 
-        for i in range(len(nums)):
-            print("nums == ", nums)
-            n = nums.pop(0)
-
-            perms = self.permute(nums)
-
-            for perm in perms:
-                perm.append(n)
-            result.extend(perms)
-            nums.append(n)
+        
+        backtrack([], 0, target)
 
         return result
 
 c = Solution()
 
-print(c.permute([1, 2, 3]))
+print(c.combinationSum2([10,1,2,7,6,1,5], 8))
