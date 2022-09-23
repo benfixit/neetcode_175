@@ -1,39 +1,38 @@
+// Q:5 - https://leetcode.com/problems/longest-palindromic-substring/
+
 /**
  * @param {string} s
  * @return {string}
  */
-var longestPalindrome = function (s) {
+ var longestPalindrome = function(s) {
   let longest = "";
-
-  const isPalindrome = (str) => {
-    return str.split("").reverse().join("");
-  };
-
-  const dfs = (str) => {
-    if (isPalindrome(str)) {
-      return true;
-    }
-
-    console.log("s == ", s);
-
-    for (let ch of s) {
-      const newStr = ch + str;
-
-      console.log("newStr == ", ch, str, s);
-
-      if (dfs(newStr)) {
-        if (str.length > longest.length) {
-          longest = str;
-        }
+  
+  for (let i = 0; i < s.length; i++){
+      // odd palindrome length
+      let left = i, right = i;
+      
+      while (left >= 0 && right < s.length && s[left] === s[right]){
+          if (right - left + 1 > longest.length){
+              longest = s.slice(left, right + 1)
+          }
+          
+          left -= 1;
+          right += 1;
       }
-    }
-
-    return false;
-  };
-
-  dfs("");
-
+      
+      // even palindrome length
+      left = i, right = i + 1;
+      
+      while (left >= 0 && right < s.length && s[left] === s[right]){
+          if (right - left + 1 > longest.length){
+              longest = s.slice(left, right + 1)
+          }
+          
+          left -= 1;
+          right += 1;
+      }
+      
+  }
+  
   return longest;
 };
-
-console.log(longestPalindrome("babad"));

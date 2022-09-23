@@ -1,59 +1,43 @@
-function solveNQueens(n) {
-    let col = new Set();
-    let posDiag = new Set(); // (r + c)
-    let negDiag = new Set(); // (r - c)
+// Q: 51 - https://leetcode.com/problems/n-queens/
 
-    let board = new Array(n).fill().map(() => new Array(n).fill('.'));
-    let res = [];
-
-    function backtrack(r) {
-        let temp = [];
-
-        if (r === n) {
-            for (let row of board) {
-                temp.push(row.join(''));
-            }
-
-            res.push(temp);
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
+ var solveNQueens = function(n) {
+    let result = [];
+    
+    let colSet = new Set(), posDiagonalSet = new Set(), negDiagonalSet = new Set();
+    
+    const board = Array.from({ length: n }, (_, k) => new Array(n).fill("."));
+    
+    const backtrack = (row) => {
+        if (row === n){
+            const temp = board.map(bRow => bRow.join(""))
+            result.push(temp)
             return;
         }
-
-        for (let c = 0; c < n; c++) {
-            if (col.has(c) || posDiag.has(r + c) || negDiag.has(r - c)) {
+        
+        for (let col = 0; col < n; col++){
+            if (colSet.has(col) || posDiagonalSet.has(row + col) || negDiagonalSet.has(row - col)){
                 continue;
             }
-
-            col.add(c);
-            posDiag.add(r + c);
-            negDiag.add(r - c);
-            board[r][c] = 'Q';
-
-            backtrack(r + 1);
-
-            col.delete(c);
-            posDiag.delete(r + c);
-            negDiag.delete(r - c);
-            board[r][c] = '.';
+            
+            colSet.add(col);
+            posDiagonalSet.add(row + col)
+            negDiagonalSet.add(row - col)
+            board[row][col] = "Q";
+            
+            backtrack(row + 1);
+            
+            colSet.delete(col);
+            posDiagonalSet.delete(row + col)
+            negDiagonalSet.delete(row - col)
+            board[row][col] = ".";
         }
     }
+    
     backtrack(0);
-    return res;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    return result;
+};
