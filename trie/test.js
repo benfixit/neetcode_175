@@ -36,3 +36,67 @@ this.remove = function (word) {
     // call remove word on root node
     removeWord(root, word);
 };
+
+
+WordDictionary.prototype.search = function(word) {
+    const dfs = (node, targetWord, index) => {
+        const ch = targetWord[index];
+
+        if (ch === "."){
+            for (let child of node.children.values()){
+                if (index === targetWord.length - 1 && child.endWord) {
+                    return true
+                }
+
+                if (dfs(child, targetWord, index + 1)){
+                    return true;
+                }
+            }
+
+        } else {
+            node = node.children.get(ch);
+
+            if (node) {
+                if (index === targetWord.length - 1 && node.endWord){
+                    return true;
+                }
+
+                return dfs(node, targetWord, index + 1)
+            }
+
+        }
+
+        return false
+    }
+
+    return dfs(this.root, word, 0)
+};
+
+WordDictionary.prototype.search = function(word) {
+    const dfs = (index, current) => {
+        //let current = root;
+
+        for (let i = index; i < word.length; i++){
+            const ch = word[i];
+
+            if (ch === "."){
+                for(let child of current.children.values()){
+                    if (dfs(i + 1, child)){
+                        return true
+                    }
+                }
+                return false;
+            } else {
+                if(!current.children.has(ch)){
+                    return false;
+                }
+    
+                current = current.children.get(ch)
+            }
+        }
+
+        return current.endWord;
+    }
+
+    return dfs(0, this.root)
+};
