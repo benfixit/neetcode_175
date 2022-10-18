@@ -6,7 +6,7 @@
  * @return {boolean}
  */
 var exist = function (board, word) {
-  const visited = {};
+  const visited = new Set();
 
   const dfs = (row, col, index) => {
     if (
@@ -14,7 +14,7 @@ var exist = function (board, word) {
       row >= board.length ||
       col < 0 ||
       col >= board[0].length ||
-      visited[`${row},${col}`] ||
+      visited.has(`${row},${col}`) ||
       board[row][col] !== word[index]
     ) {
       return false;
@@ -31,17 +31,17 @@ var exist = function (board, word) {
       [-1, 0],
     ];
 
+    visited.add(`${row},${col}`);
+
     for (let dir of directions) {
       const [newRow, newCol] = [dir[0] + row, dir[1] + col];
-
-      visited[`${row},${col}`] = true;
 
       if (dfs(newRow, newCol, index + 1)) {
         return true;
       }
-
-      visited[`${row},${col}`] = false;
     }
+
+    visited.delete(`${row},${col}`);
 
     return false;
   };
@@ -91,4 +91,4 @@ const word4 = "AAB";
 console.log(exist(board1, word1)); //true
 console.log(exist(board2, word2)); //true
 console.log(exist(board3, word3)); //false
-console.log(exist(board4, word4)); //false
+console.log(exist(board4, word4)); //true
