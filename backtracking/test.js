@@ -16,7 +16,9 @@ function backtrack(first, k, nums, array, result) {
     // choose your options and recurse and backtrack for each option
     for (let i = first; i < nums.length; i++) {
         array.push(nums[i]);
+
         backtrack(i + 1, k, nums, array, result);
+        
         array.pop();
     }
 }
