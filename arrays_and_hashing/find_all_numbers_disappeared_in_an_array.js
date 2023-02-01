@@ -6,28 +6,27 @@
  */
 var findDisappearedNumbers = function(nums) {
     const result = [];
-    let start = 0;
 
     for (let i = 0; i < nums.length; i++){
-        const curr = nums[i];
+        const index = Math.abs(nums[i]) - 1;
 
-        const temp = nums[curr - 1];
-        nums[curr - 1] = curr;
-        nums[i] = temp;
+        nums[index] = -1 * Math.abs(nums[index]);
     }
 
-    console.log('numssss::: ', nums)
-
-    for (let i = 0; i < nums.length; i++){
-        if (nums[i] !== start + 1){
-            result.push(i + 1);
+    nums.forEach((num, index) => {
+        if (num > 0){
+            result.push(index + 1);
         }
-
-        start += 1;
-    }
+    })
 
     return result;
-
 };
 
-console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+// console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]));
+console.log(findDisappearedNumbers([2, 1, 4, 4]));
+
+
+
+// [-2, -1, 4, -4]
+
+// [-1, ]
