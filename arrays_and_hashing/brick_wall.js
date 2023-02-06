@@ -6,15 +6,27 @@
  */
 var leastBricks = function(wall) {
     const bricksMap = new Map();
+    let minimum = wall.length;
+    let max = 0;
 
+    for (let row of wall){
+        let edge = 0;
+        for (let brick of row){
+            edge += brick;
+            bricksMap.set(edge, (bricksMap.get(edge) || 0) + 1);
+        }
+        max = edge;
+    }
+
+    for (let [key, value] of bricksMap.entries()){
+        if (key !== max){
+            const gap = wall.length - value;
+
+            if (gap < minimum){
+                minimum = gap;
+            }
+        }
+    }
 
     return minimum;
 };
-
-let wall = [[1,2,2,1],[3,1,2],[1,3,2],[2,4],[3,1,2],[1,3,1,1]] // 2
-
-console.log(leastBricks(wall))
-
-wall = [[1],[1],[1]] // 3
-
-console.log(leastBricks(wall))

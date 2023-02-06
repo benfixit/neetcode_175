@@ -13,8 +13,6 @@ const preOrderRecursive = (node) => {
 
     preOrderRecursive(node.left);
 
-    // console.log("test == ", test, node.value)
-
     preOrderRecursive(node.right);
 }
 

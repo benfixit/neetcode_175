@@ -28,13 +28,3 @@ var plusOne = function(digits) {
 
     return digits;
 };
-
-console.log(plusOne([9]))
-// console.log(plusOne([9, 8 , 9]))
-
-// console.log(plusOne([9, 9]));
-// console.log(plusOne([899, 9]));
-// console.log(plusOne([9]));
-// console.log(plusOne([8, 9, 9, 9, 9]));
-// console.log(plusOne([999]));
-// console.log(plusOne([1234]));

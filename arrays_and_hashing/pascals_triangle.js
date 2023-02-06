@@ -21,3 +21,5 @@
         
     return result;
 };
+
+console.log(generate(10))
