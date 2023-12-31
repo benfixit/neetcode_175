@@ -1,6 +1,8 @@
 class Node {
-    constructor(value){
+    constructor(value, left = null, right = null){
         this.value = value;
+        this.left = left;
+        this.right = right;
     }
 }
 
@@ -53,15 +55,15 @@ const postOrderIterative = (node) => {
     }
 }
 
-const root = new Node(1);
-root.left = new Node(2);
-root.right = new Node(3);
-root.left.left = new Node(4);
-root.right.left = new Node(5);
-root.right.right = new Node(6);
-root.right.left.left = new Node(7);
-root.right.left.right = new Node(8);
+const root = new Node(3, new Node(5, new Node(6), new Node(7)), new Node(1, new Node(4), new Node(2, new Node(9), new Node(8))));
+// root.left = new Node(2);
+// root.right = new Node(3);
+// root.left.left = new Node(4);
+// root.right.left = new Node(5);
+// root.right.right = new Node(6);
+// root.right.left.left = new Node(7);
+// root.right.left.right = new Node(8);
  
 postOrderIterative(root);
-console.log("SPACE IN BETWEEN")
-postOrderRecursive(root);
+// console.log("SPACE IN BETWEEN")
+// postOrderRecursive(root);

@@ -20,4 +20,5 @@
 };
 
 console.log(moveZeroes([0, 1, 0, 3, 12]))
+// 1,0
 console.log(moveZeroes([2, 1]))

@@ -29,4 +29,4 @@
     return result;
 };
 
-console.log(permute([1, 2, 3]))
+console.log(permute([1, 5, 3]))
